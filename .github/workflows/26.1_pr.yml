@@ -16,8 +16,6 @@ jobs:
   build:
     name: "Build"
     runs-on: ubuntu-20.04
-    if: |
-      !contains(github.event.pull_request.title, '[ci skip]')
     steps:
       - uses: actions/checkout@v6
 
