@@ -11,7 +11,8 @@ on:
     types: [ opened, synchronize, reopened ]
   workflow_call:
   push:
-  
+    branches:
+      - "26.1"
 jobs:
   build:
     name: "Build"
@@ -33,13 +34,13 @@ jobs:
 
       - name: Setting mod version
         run: |
-          cat $GITHUB_WORKSPACE/gradle.properties | grep ^archives_base_name= >> 26.1
-          cat $GITHUB_WORKSPACE/gradle.properties | grep ^minecraft_version= >> 26.1
-          cat $GITHUB_WORKSPACE/gradle.properties | grep ^base_version= >> 26.1
+          cat $GITHUB_WORKSPACE/gradle.properties | grep ^archives_base_name= >> $GITHUB_ENV
+          cat $GITHUB_WORKSPACE/gradle.properties | grep ^minecraft_version= >> $GITHUB_ENV
+          cat $GITHUB_WORKSPACE/gradle.properties | grep ^base_version= >> $GITHUB_ENV
           
       - uses: actions/upload-artifact@v5
         with:
-          name: 26.1
+          name: ${{ env.archives_base_name }}-${{ env.base_version }}
           path: |
             **/build/libs/
             !build/libs/
