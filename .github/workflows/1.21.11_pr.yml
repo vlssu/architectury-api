@@ -1,4 +1,4 @@
-name: Build PR snapshot (1.21.11)
+name: Build PR snapshot (26.1)
 
 on:
   pull_request:
